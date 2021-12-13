@@ -26,12 +26,37 @@ module.exports = {
 };
 
 function renderSiderBar() {
-  return ([
-    // ["/notes/", "首页"],
-    {
-      title: "基础篇",
-      collapsable: false,
-      children: readFileList('base')
-    }
-])
+  return [
+		// ["/notes/", "首页"],
+		{
+			title: '基础篇',
+			collapsable: false,
+			children: readFileList('base'),
+		},
+		{
+			title: '内置模块',
+			collapsable: true,
+			children: readFileList('modules'),
+		},
+		{
+			title: '进阶篇',
+			collapsable: true,
+			children: readFileList('advance'),
+		},
+		{
+			title: 'Express',
+			collapsable: true,
+			children: readFileList('express'),
+		},
+		{
+			title: 'Koa2',
+			collapsable: true,
+			children: readFileList('koa2'),
+		},
+		{
+			title: '其他',
+			collapsable: false,
+			children: readFileList('other'),
+		}
+  ];
 }
