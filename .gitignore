@@ -92,3 +92,4 @@ typings/
 .temp/
 .DS_Store
 count.js
+/docs/.vuepress/dist
