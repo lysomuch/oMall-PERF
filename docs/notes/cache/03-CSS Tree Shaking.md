@@ -1,6 +1,5 @@
 CSS Tree Shaking 并不像 JS Tree Shaking 那样方便理解，首先要模拟一个真实的项目环境，来体现 CSS 的 Tree Shaking 的配置和效果。
 
-**此章节源码基于第八节处理 CSS 项目上做修改**
 
 我们首先编写 /src/css/base.css 样式文件，在文件中，我们编写了 3 个样式类。但在代码中，我们只会使用 .box 和 .box--big 这两个类。代码如下所示：
 
