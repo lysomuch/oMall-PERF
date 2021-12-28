@@ -1,5 +1,10 @@
+### 1、什么是css tree shaking？
+
+>css tree shaking就是指将多余的、没有使用过的样式从css文件中剔除。
+
 CSS Tree Shaking 并不像 JS Tree Shaking 那样方便理解，首先要模拟一个真实的项目环境，来体现 CSS 的 Tree Shaking 的配置和效果。
 
+### 2、实现css tree shaking
 
 我们首先编写 /src/css/base.css 样式文件，在文件中，我们编写了 3 个样式类。但在代码中，我们只会使用 .box 和 .box--big 这两个类。代码如下所示：
 

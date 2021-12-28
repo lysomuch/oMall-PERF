@@ -1,4 +1,4 @@
-const readFileList = require("../../scripts/build.js");
+const readFileList = require('../../scripts/build.js');
 // https://github.com/bule-sky/oMall-PERF
 module.exports = {
 	repo: 'bule-sky/oMall-PERF',
@@ -26,7 +26,7 @@ module.exports = {
 };
 
 function renderSiderBar() {
-  return [
+	return [
 		// ["/notes/", "首页"],
 		{
 			title: '基础篇',
@@ -38,30 +38,30 @@ function renderSiderBar() {
 			collapsable: false,
 			children: readFileList('cache'),
 		},
-		{
-			title: '内置模块',
-			collapsable: true,
-			children: readFileList('modules'),
-		},
-		{
-			title: '进阶篇',
-			collapsable: true,
-			children: readFileList('advance'),
-		},
-		{
-			title: 'Express',
-			collapsable: true,
-			children: readFileList('express'),
-		},
-		{
-			title: 'Koa2',
-			collapsable: true,
-			children: readFileList('koa2'),
-		},
-		{
-			title: '其他',
-			collapsable: false,
-			children: readFileList('other'),
-		},
-  ];
+		// {
+		// 	title: '内置模块',
+		// 	collapsable: true,
+		// 	children: readFileList('modules'),
+		// },
+		// {
+		// 	title: '进阶篇',
+		// 	collapsable: true,
+		// 	children: readFileList('advance'),
+		// },
+		// {
+		// 	title: 'Express',
+		// 	collapsable: true,
+		// 	children: readFileList('express'),
+		// },
+		// {
+		// 	title: 'Koa2',
+		// 	collapsable: true,
+		// 	children: readFileList('koa2'),
+		// },
+		// {
+		// 	title: '其他',
+		// 	collapsable: false,
+		// 	children: readFileList('other'),
+		// },
+	];
 }
