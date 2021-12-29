@@ -24,6 +24,17 @@ module.exports = (ctx) => ({
 	],
 	themeConfig,
 	plugins: [
+		['@vssue/vuepress-plugin-vssue', {
+			// 设置平台，而不是 `api`
+			platform: 'github-v4',
+
+			// 其他的 Vssue 配置
+			owner: 'bule-sky', // 仓库的拥有者的名称
+			repo: 'oMall-PERF', // 存储 Issue 和评论的仓库的名称
+			clientId: 'd10e137deffde5a7767e', // 刚保存下来的  Client ID
+			clientSecret: '07a7f63c4997f29ce74ce8f72a86b986f28b6a2d', //  刚才保存下来的 Client secrets
+			autoCreateIssue: true, //自动创建评论
+		}],
 		['@vuepress/back-to-top', true],
 		[
 			'@vuepress/pwa',
