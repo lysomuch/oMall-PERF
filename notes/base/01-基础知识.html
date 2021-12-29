@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>优化前言 | Nuxt 应用性能优化指南</title>
+    <meta name="generator" content="VuePress 1.9.5">
+    <link rel="icon" href="/logo.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon-152x152.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#3eaf7c">
+    <meta name="description" content="oMall站点性能优化">
+    <meta name="theme-color" content="#3eaf7c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="msapplication-TileImage" content="/icons/msapplication-icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    
+    <link rel="preload" href="/assets/css/0.styles.a57395e0.css" as="style"><link rel="preload" href="/assets/js/app.6e093351.js" as="script"><link rel="preload" href="/assets/js/9.7c4d4c84.js" as="script"><link rel="preload" href="/assets/js/4.a7041a76.js" as="script"><link rel="preload" href="/assets/js/13.e7993bb7.js" as="script"><link rel="preload" href="/assets/js/5.009e70e6.js" as="script"><link rel="prefetch" href="/assets/js/10.df913fac.js"><link rel="prefetch" href="/assets/js/11.89a377b3.js"><link rel="prefetch" href="/assets/js/12.d6a1e82f.js"><link rel="prefetch" href="/assets/js/14.eb078b76.js"><link rel="prefetch" href="/assets/js/15.d1c3c8a1.js"><link rel="prefetch" href="/assets/js/16.a7d4da49.js"><link rel="prefetch" href="/assets/js/17.0fa934f4.js"><link rel="prefetch" href="/assets/js/18.971e4300.js"><link rel="prefetch" href="/assets/js/19.5a0f3ecd.js"><link rel="prefetch" href="/assets/js/20.17e2e13f.js"><link rel="prefetch" href="/assets/js/21.8447c5ea.js"><link rel="prefetch" href="/assets/js/6.5533d298.js"><link rel="prefetch" href="/assets/js/7.3bef3d36.js"><link rel="prefetch" href="/assets/js/8.4f8ee984.js"><link rel="prefetch" href="/assets/js/vendors~docsearch.8ea4cde2.js"><link rel="prefetch" href="/assets/js/vendors~notification.92a6efe3.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.a57395e0.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">Nuxt 应用性能优化指南</span></a> <div class="links"><form id="search-form" role="search" class="algolia-search-wrapper search-box"><input id="algolia-search-input" class="search-query"></form> <nav class="nav-links can-hide"> <a href="https://github.com/bule-sky/oMall-PERF" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"> <a href="https://github.com/bule-sky/oMall-PERF" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>基础篇</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/notes/base/01-基础知识.html" class="active sidebar-link">基础知识</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/notes/base/01-基础知识.html#优化前言" class="sidebar-link">优化前言</a></li><li class="sidebar-sub-header"><a href="/notes/base/01-基础知识.html#if-else-对比-switch" class="sidebar-link">if-else 对比 switch</a></li><li class="sidebar-sub-header"><a href="/notes/base/01-基础知识.html#查找表" class="sidebar-link">查找表</a></li><li class="sidebar-sub-header"><a href="/notes/base/01-基础知识.html#v-if-和-v-show-区分使用场景" class="sidebar-link">v-if 和 v-show 区分使用场景</a></li><li class="sidebar-sub-header"><a href="/notes/base/01-基础知识.html#v-for-遍历必须为-item-添加-key-且避免同时使用-v-if" class="sidebar-link">v-for 遍历必须为 item 添加 key，且避免同时使用 v-if</a></li><li class="sidebar-sub-header"><a href="/notes/base/01-基础知识.html#长列表性能优化" class="sidebar-link">长列表性能优化</a></li><li class="sidebar-sub-header"><a href="/notes/base/01-基础知识.html#事件的销毁" class="sidebar-link">事件的销毁</a></li></ul></li><li><a href="/notes/base/02-使用 HTTP2.html" class="sidebar-link">使用 HTTP2</a></li><li><a href="/notes/base/03-环境配置.html" class="sidebar-link">环境配置</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>缓存篇</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/notes/cache/01-api接口缓存.html" class="sidebar-link">api接口缓存</a></li><li><a href="/notes/cache/02-页面缓存.html" class="sidebar-link">页面缓存</a></li><li><a href="/notes/cache/03-CSS Tree Shaking.html" class="sidebar-link">CSS Tree Shaking</a></li><li><a href="/notes/cache/04-JS Tree Shaking.html" class="sidebar-link">JS Tree Shaking</a></li><li><a href="/notes/cache/05-使用 DLLPlugin 加快打包速度.html" class="sidebar-link">使用 DLLPlugin 加快打包速度</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="优化前言"><a href="#优化前言" class="header-anchor">#</a> 优化前言</h2> <p>性能优化是把双刃剑，有好的一面也有坏的一面。好的一面就是能提升网站性能，坏的一面就是配置麻烦，或者要遵守的规则太多。并且某些性能优化规则并不适用所有场景，需要谨慎使用</p> <h2 id="if-else-对比-switch"><a href="#if-else-对比-switch" class="header-anchor">#</a> if-else 对比 switch</h2> <blockquote><p>使用if else 还是 switch 目前一般是从代码可读性的角度出发，基于判断条件的数量来决定：数量越多就越倾向于 switch 而不是 if else。</p></blockquote> <p>事实证明除了代码可读性，switch 的运行速度是比 if else 更快的。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">if</span> <span class="token punctuation">(</span>color <span class="token operator">==</span> <span class="token string">'blue'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>color <span class="token operator">==</span> <span class="token string">'yellow'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>color <span class="token operator">==</span> <span class="token string">'white'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>color <span class="token operator">==</span> <span class="token string">'black'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>color <span class="token operator">==</span> <span class="token string">'green'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>color <span class="token operator">==</span> <span class="token string">'orange'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>color <span class="token operator">==</span> <span class="token string">'pink'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token keyword">switch</span> <span class="token punctuation">(</span>color<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token string">'blue'</span><span class="token operator">:</span>
+
+        <span class="token keyword">break</span>
+    <span class="token keyword">case</span> <span class="token string">'yellow'</span><span class="token operator">:</span>
+
+        <span class="token keyword">break</span>
+    <span class="token keyword">case</span> <span class="token string">'white'</span><span class="token operator">:</span>
+
+        <span class="token keyword">break</span>
+    <span class="token keyword">case</span> <span class="token string">'black'</span><span class="token operator">:</span>
+
+        <span class="token keyword">break</span>
+    <span class="token keyword">case</span> <span class="token string">'green'</span><span class="token operator">:</span>
+
+        <span class="token keyword">break</span>
+    <span class="token keyword">case</span> <span class="token string">'orange'</span><span class="token operator">:</span>
+
+        <span class="token keyword">break</span>
+    <span class="token keyword">case</span> <span class="token string">'pink'</span><span class="token operator">:</span>
+
+        <span class="token keyword">break</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><p>像上面的这种情况，从可读性来说，使用 <code>switch</code> 是比较好的（js 的 switch 语句不是基于哈希实现，而是循环判断，所以说 if-else、switch 从性能上来说是一样的）。</p> <h2 id="查找表"><a href="#查找表" class="header-anchor">#</a> 查找表</h2> <blockquote><p>当条件语句特别多时，使用 <code>switch</code> 和 <code>if-else</code> 不是最佳的选择，这时不妨试一下查找表。查找表（<code>lookup Tables</code>）可以使用数组和对象来构建。</p></blockquote> <p>例一：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// 通过条件判断</span>
+<span class="token keyword">function</span> <span class="token function">getColor</span><span class="token punctuation">(</span><span class="token parameter">c</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>c <span class="token operator">==</span> <span class="token string">'blue'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">'blue的rgba值'</span>
+    <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>c <span class="token operator">===</span> <span class="token string">'block'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">'block的rgba值'</span>
+    <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>c <span class="token operator">===</span> <span class="token string">'yellow'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">'yellow的rgba值'</span>
+    <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">(</span>c <span class="token operator">===</span> <span class="token string">'green'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">'green的rgba值'</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 通过 map 映射</span>
+<span class="token keyword">function</span> <span class="token function">getColor</span><span class="token punctuation">(</span><span class="token parameter">c</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+        <span class="token string">'blue'</span><span class="token operator">:</span> <span class="token string">'blue的rgba值'</span><span class="token punctuation">,</span>
+        <span class="token string">'block'</span><span class="token operator">:</span> <span class="token string">'block的rgba值'</span><span class="token punctuation">,</span>
+        <span class="token string">'yellow'</span><span class="token operator">:</span> <span class="token string">'yellow的rgba值'</span><span class="token punctuation">,</span>
+        <span class="token string">'green'</span><span class="token operator">:</span> <span class="token string">'green的rgba值'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">[</span>c<span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><p>例二：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">switch</span> <span class="token punctuation">(</span>index<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token string">'0'</span><span class="token operator">:</span>
+        <span class="token keyword">return</span> result0
+    <span class="token keyword">case</span> <span class="token string">'1'</span><span class="token operator">:</span>
+        <span class="token keyword">return</span> result1
+    <span class="token keyword">case</span> <span class="token string">'2'</span><span class="token operator">:</span>
+        <span class="token keyword">return</span> result2
+    <span class="token keyword">case</span> <span class="token string">'3'</span><span class="token operator">:</span>
+        <span class="token keyword">return</span> result3
+    <span class="token keyword">case</span> <span class="token string">'4'</span><span class="token operator">:</span>
+        <span class="token keyword">return</span> result4
+    <span class="token keyword">case</span> <span class="token string">'5'</span><span class="token operator">:</span>
+        <span class="token keyword">return</span> result5
+    <span class="token keyword">case</span> <span class="token string">'6'</span><span class="token operator">:</span>
+        <span class="token keyword">return</span> result6
+    <span class="token keyword">case</span> <span class="token string">'7'</span><span class="token operator">:</span>
+        <span class="token keyword">return</span> result7
+    <span class="token keyword">case</span> <span class="token string">'8'</span><span class="token operator">:</span>
+        <span class="token keyword">return</span> result8
+<span class="token punctuation">}</span>
+
+</code></pre></div><p>可以将这个 <code>switch</code> 语句转换为查找表</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">const</span> results <span class="token operator">=</span> <span class="token punctuation">[</span>result0<span class="token punctuation">,</span>result1<span class="token punctuation">,</span>result2<span class="token punctuation">,</span>result3<span class="token punctuation">,</span>result4<span class="token punctuation">,</span>result5<span class="token punctuation">,</span>result6<span class="token punctuation">,</span>result7<span class="token punctuation">,</span>result8<span class="token punctuation">]</span>
+
+<span class="token keyword">return</span> results<span class="token punctuation">[</span>index<span class="token punctuation">]</span>
+</code></pre></div><p>如果条件语句不是数值而是字符串，可以用对象来建立查找表</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">const</span> map <span class="token operator">=</span> <span class="token punctuation">{</span>
+  red<span class="token operator">:</span> result0<span class="token punctuation">,</span>
+  green<span class="token operator">:</span> result1<span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">return</span> map<span class="token punctuation">[</span>color<span class="token punctuation">]</span>
+</code></pre></div><h2 id="v-if-和-v-show-区分使用场景"><a href="#v-if-和-v-show-区分使用场景" class="header-anchor">#</a> v-if 和 v-show 区分使用场景</h2> <p><strong>v-if</strong> 是 <strong>真正</strong> 的条件渲染，因为它会确保在切换过程中条件块内的事件监听器和子组件适当地被销毁和重建；也是<strong>惰性的</strong>：如果在初始渲染时条件为假，则什么也不做——直到条件第一次变为真时，才会开始渲染条件块。</p> <p><strong>v-show</strong> 就简单得多， 不管初始条件是什么，元素总是会被渲染，并且只是简单地基于 CSS 的 display 属性进行切换。</p> <p>所以，v-if 适用于在运行时很少改变条件，不需要频繁切换条件的场景；v-show 则适用于需要非常频繁切换条件的场景。</p> <h2 id="v-for-遍历必须为-item-添加-key-且避免同时使用-v-if"><a href="#v-for-遍历必须为-item-添加-key-且避免同时使用-v-if" class="header-anchor">#</a> v-for 遍历必须为 item 添加 key，且避免同时使用 v-if</h2> <p>（1）v-for 遍历必须为 item 添加 key</p> <p>在列表数据进行遍历渲染时，需要为每一项 item 设置唯一 key 值，方便 Vue.js 内部机制精准找到该条列表数据。当 state 更新时，新的状态值和旧的状态值对比，较快地定位到 diff 。</p> <p>（2）v-for 遍历避免同时使用 v-if</p> <p>v-for 比 v-if 优先级高，如果每一次都需要遍历整个数组，将会影响速度，尤其是当之需要渲染很小一部分的时候，必要情况下应该替换成 computed 属性。</p> <p>推荐：</p> <div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span>
+    <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>user in activeUsers<span class="token punctuation">&quot;</span></span>
+    <span class="token attr-name">:key</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>user.id<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    {{ user.name }}
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
+computed: {
+  activeUsers: function () {
+    return this.users.filter(function (user) {
+	 return user.isActive
+    })
+  }
+}
+</code></pre></div><p>不推荐：</p> <div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span>
+    <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>user in users<span class="token punctuation">&quot;</span></span>
+    <span class="token attr-name">v-if</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>user.isActive<span class="token punctuation">&quot;</span></span>
+    <span class="token attr-name">:key</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>user.id<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    {{ user.name }}
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><h2 id="长列表性能优化"><a href="#长列表性能优化" class="header-anchor">#</a> 长列表性能优化</h2> <p>Vue 会通过 Object.defineProperty 对数据进行劫持，来实现视图响应数据的变化，然而有些时候我们的组件就是纯粹的数据展示，不会有任何改变，我们就不需要 Vue 来劫持我们的数据，在大量数据展示的情况下，这能够很明显的减少组件初始化的时间，那如何禁止 Vue 劫持我们的数据呢？可以通过 Object.freeze 方法来冻结一个对象，一旦被冻结的对象就再也不能被修改了。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">data</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+    users<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token keyword">async</span> <span class="token function">created</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> users <span class="token operator">=</span> <span class="token keyword">await</span> axios<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">&quot;/api/users&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>users <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">freeze</span><span class="token punctuation">(</span>users<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="事件的销毁"><a href="#事件的销毁" class="header-anchor">#</a> 事件的销毁</h2> <p>Vue 组件销毁时，会自动清理它与其它实例的连接，解绑它的全部指令及事件监听器，但是仅限于组件本身的事件。 如果在 js 内使用 addEventListene 等方式是不会自动销毁的，我们需要在组件销毁时手动移除这些事件的监听，以免造成内存泄露，如：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token function">created</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>click<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token function">beforeDestroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">removeEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>click<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">2021/12/29 上午10:24:10</span></div></footer> <div class="page-nav"><p class="inner"><!----> <span class="next"><a href="/notes/base/02-使用 HTTP2.html">
+        使用 HTTP2
+      </a>
+      →
+    </span></p></div>  <!----></main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.6e093351.js" defer></script><script src="/assets/js/9.7c4d4c84.js" defer></script><script src="/assets/js/4.a7041a76.js" defer></script><script src="/assets/js/13.e7993bb7.js" defer></script><script src="/assets/js/5.009e70e6.js" defer></script>
+  </body>
+</html>

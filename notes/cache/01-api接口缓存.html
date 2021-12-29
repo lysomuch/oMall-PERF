@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>服务端引入缓存 | Nuxt 应用性能优化指南</title>
+    <meta name="generator" content="VuePress 1.9.5">
+    <link rel="icon" href="/logo.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon-152x152.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#3eaf7c">
+    <meta name="description" content="oMall站点性能优化">
+    <meta name="theme-color" content="#3eaf7c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="msapplication-TileImage" content="/icons/msapplication-icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    
+    <link rel="preload" href="/assets/css/0.styles.a57395e0.css" as="style"><link rel="preload" href="/assets/js/app.6e093351.js" as="script"><link rel="preload" href="/assets/js/9.7c4d4c84.js" as="script"><link rel="preload" href="/assets/js/4.a7041a76.js" as="script"><link rel="preload" href="/assets/js/16.a7d4da49.js" as="script"><link rel="preload" href="/assets/js/5.009e70e6.js" as="script"><link rel="prefetch" href="/assets/js/10.df913fac.js"><link rel="prefetch" href="/assets/js/11.89a377b3.js"><link rel="prefetch" href="/assets/js/12.d6a1e82f.js"><link rel="prefetch" href="/assets/js/13.e7993bb7.js"><link rel="prefetch" href="/assets/js/14.eb078b76.js"><link rel="prefetch" href="/assets/js/15.d1c3c8a1.js"><link rel="prefetch" href="/assets/js/17.0fa934f4.js"><link rel="prefetch" href="/assets/js/18.971e4300.js"><link rel="prefetch" href="/assets/js/19.5a0f3ecd.js"><link rel="prefetch" href="/assets/js/20.17e2e13f.js"><link rel="prefetch" href="/assets/js/21.8447c5ea.js"><link rel="prefetch" href="/assets/js/6.5533d298.js"><link rel="prefetch" href="/assets/js/7.3bef3d36.js"><link rel="prefetch" href="/assets/js/8.4f8ee984.js"><link rel="prefetch" href="/assets/js/vendors~docsearch.8ea4cde2.js"><link rel="prefetch" href="/assets/js/vendors~notification.92a6efe3.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.a57395e0.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">Nuxt 应用性能优化指南</span></a> <div class="links"><form id="search-form" role="search" class="algolia-search-wrapper search-box"><input id="algolia-search-input" class="search-query"></form> <nav class="nav-links can-hide"> <a href="https://github.com/bule-sky/oMall-PERF" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"> <a href="https://github.com/bule-sky/oMall-PERF" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>基础篇</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/notes/base/01-基础知识.html" class="sidebar-link">基础知识</a></li><li><a href="/notes/base/02-使用 HTTP2.html" class="sidebar-link">使用 HTTP2</a></li><li><a href="/notes/base/03-环境配置.html" class="sidebar-link">环境配置</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>缓存篇</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/notes/cache/01-api接口缓存.html" class="active sidebar-link">api接口缓存</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/notes/cache/02-页面缓存.html" class="sidebar-link">页面缓存</a></li><li><a href="/notes/cache/03-CSS Tree Shaking.html" class="sidebar-link">CSS Tree Shaking</a></li><li><a href="/notes/cache/04-JS Tree Shaking.html" class="sidebar-link">JS Tree Shaking</a></li><li><a href="/notes/cache/05-使用 DLLPlugin 加快打包速度.html" class="sidebar-link">使用 DLLPlugin 加快打包速度</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h3 id="服务端引入缓存"><a href="#服务端引入缓存" class="header-anchor">#</a> 服务端引入缓存</h3> <p>服务端开发意味着缓存可作为性能优化的最直接法门，Nuxt.js作为一种服务端渲染框架，也不例外；针对不同的页面，不同的数据状态，可主要区分为下面三类缓存：</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token comment"># 安装axios-extensions、LRUCache扩展</span>
+$ <span class="token function">npm</span> i axios-extensions LRUCache -S
+<span class="token comment"># OR</span>
+$ <span class="token function">yarn</span> <span class="token function">add</span> axios-extensions LRUCache
+</code></pre></div><ol><li><h4 id="api接口数据缓存"><a href="#api接口数据缓存" class="header-anchor">#</a> API接口数据缓存</h4></li></ol> <p>将服务端获取的数据，全部缓存到node进程内存中，定时刷新，有效期内请求都通过缓存获取API接口数据，减小数据获取时间；</p> <p>此种缓存适用于缓存的部分API数据，基本保持不变，变更不频繁，与用户个人数据无关。</p> <p>示例代码：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// 第一步引入插件</span>
+<span class="token keyword">import</span> LRUCache <span class="token keyword">from</span> <span class="token string">&quot;lru-cache&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> cacheAdapterEnhancer <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;axios-extensions&quot;</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 第二步api实例化数据缓存存储对象</span>
+<span class="token keyword">const</span> <span class="token constant">CACHE</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LRUCache</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+ <span class="token comment">// 最大缓存数量</span>
+ max<span class="token operator">:</span> <span class="token number">1000</span><span class="token punctuation">,</span>
+ <span class="token comment">// 有效期60s</span>
+ maxAge<span class="token operator">:</span> <span class="token number">1000</span> <span class="token operator">*</span> <span class="token number">10</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+ <span class="token comment">// 第三步在plugins目录下找到axios封装的插件，缺点：接口缓存适用于get</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> store<span class="token punctuation">,</span> $axios<span class="token punctuation">,</span> app <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+<span class="token comment">// 请求中使用了useCache: true 的话，会被缓存起来以便下次直接返回从而减少服务器压力</span>
+ <span class="token keyword">const</span> defaultAdapter <span class="token operator">=</span> $axios<span class="token punctuation">.</span>defaults<span class="token punctuation">.</span>adapter<span class="token punctuation">;</span>
+ $axios<span class="token punctuation">.</span>defaults<span class="token punctuation">.</span>adapter <span class="token operator">=</span> <span class="token function">cacheAdapterEnhancer</span><span class="token punctuation">(</span>defaultAdapter<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+	enabledByDefault<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+	cacheFlag<span class="token operator">:</span> <span class="token string">&quot;useCache&quot;</span><span class="token punctuation">,</span> <span class="token comment">//useCache标志</span>
+	defaultCache<span class="token operator">:</span> <span class="token constant">CACHE</span>
+ <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">//注意 只能使用$axios.get() //这种请求方式才能获得缓存功能</span>
+<span class="token comment">//$axios({method:&quot;get&quot;})//无法获得缓存效果</span>
+</code></pre></div><p>具体使用如下</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// 在api请求时添加useCache标志即可，如在某个页面中</span>
+<span class="token comment">// 消息数量</span>
+<span class="token function">inject</span><span class="token punctuation">(</span><span class="token string">'getUnReadMessageCount'</span><span class="token punctuation">,</span> <span class="token parameter">params</span> <span class="token operator">=&gt;</span>
+  $axios<span class="token punctuation">.</span><span class="token function">$get</span><span class="token punctuation">(</span><span class="token string">'/notice/api/station/unReadCount'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    useCache<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    headers<span class="token operator">:</span> <span class="token punctuation">{</span> auth<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>只有get请求可以被缓存。默认不启用缓存机制</p> <p>如果需要对数据进行修改,需要对数据进行深克隆,否则,会影响到缓存数据</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">const</span> res<span class="token operator">=</span> awite $axios<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'xxxxxxx'</span><span class="token punctuation">,</span><span class="token punctuation">{</span>useCache<span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">}</span><span class="token punctuation">)</span> 
+<span class="token comment">//返回数据res={name:1,code:123}</span>
+<span class="token keyword">delete</span> res<span class="token punctuation">.</span>code 
+<span class="token keyword">return</span> <span class="token punctuation">{</span>data<span class="token operator">:</span>res<span class="token punctuation">}</span> <span class="token comment">//第一次数据请求完成</span>
+ 
+<span class="token comment">//此时缓存中res为{name:1},delete影响了缓存中数据</span>
+ 
+深拷贝一份请求的结果
+<span class="token keyword">const</span> result<span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">//深拷贝一份,用这份数据delete不会影响缓存</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">2021/12/14 下午8:56:51</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/notes/base/03-环境配置.html" class="prev">
+        环境配置
+      </a></span> <span class="next"><a href="/notes/cache/02-页面缓存.html">
+        页面缓存
+      </a>
+      →
+    </span></p></div>  <!----></main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.6e093351.js" defer></script><script src="/assets/js/9.7c4d4c84.js" defer></script><script src="/assets/js/4.a7041a76.js" defer></script><script src="/assets/js/16.a7d4da49.js" defer></script><script src="/assets/js/5.009e70e6.js" defer></script>
+  </body>
+</html>

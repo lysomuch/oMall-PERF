@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[12],{495:function(t,e,n){"use strict";n.r(e);var s=n(35),l=Object(s.a)({},(function(){var t=this.$createElement,e=this._self._c||t;return e("ContentSlotsDistributor",{attrs:{"slot-key":this.$parent.slotKey}},[e("blockquote",[e("p",[this._v("oMall站点笔记系统归纳整理")])])])}),[],!1,null,null,null);e.default=l.exports}}]);
